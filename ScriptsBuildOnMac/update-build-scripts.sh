@@ -9,7 +9,7 @@ echo "========== Run git on Mac =========="
 echo "PATH=$PATH"
 echo "git-lfs=$(which git-lfs)"
 
-cd "$PROJECT" || exit 1
+cd "$BUILD_SCRIPT_FOLDER" || exit 1
 
 echo
 echo "========== git - clean =========="

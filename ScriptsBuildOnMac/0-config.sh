@@ -1,6 +1,8 @@
 #!/bin/bash
 
 PROJECT="/Users/admin/Documents/GitHub/kinder"
+BUILD_SCRIPT_FOLDER="/Users/admin/Documents/GitHub/BuildIOSFromWindows"
+
 BUILD_ROOT="$PROJECT/_build"
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
