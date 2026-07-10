@@ -17,6 +17,7 @@ echo "git-lfs=$(which git-lfs)"
 cd "$PROJECT" || exit 1
 
 echo
+echo "Current directory: $(pwd)"
 echo "========== git - clean =========="
 
 git clean -fd
@@ -50,4 +51,5 @@ echo
 echo "========== git - done =========="
 echo "Branch   : $(git rev-parse --abbrev-ref HEAD)"
 echo "Revision : $(git rev-parse HEAD)"
+echo "Comment  : $(git log -1 --pretty=%B)"
 echo

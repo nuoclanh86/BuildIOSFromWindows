@@ -12,6 +12,7 @@ echo "git-lfs=$(which git-lfs)"
 cd "$BUILD_SCRIPT_FOLDER" || exit 1
 
 echo
+echo "Current directory: $(pwd)"
 echo "========== git - clean =========="
 
 git clean -fd
