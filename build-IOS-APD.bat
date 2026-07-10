@@ -16,7 +16,7 @@ REM =====================================================
 REM Run specific step
 REM =====================================================
 
-if /I "%~1"=="prepare" goto PREPARE
+if /I "%~1"=="update" goto UPDATE
 if /I "%~1"=="build" goto BUILD
 if /I "%~1"=="archive" goto ARCHIVE
 if /I "%~1"=="ipa" goto IPA
@@ -27,7 +27,7 @@ echo Unknown parameter: %~1
 echo.
 echo Usage:
 echo     build.bat
-echo     build.bat prepare
+echo     build.bat update
 echo     build.bat build
 echo     build.bat archive
 echo     build.bat ipa
@@ -36,7 +36,7 @@ echo     build.bat info
 goto END
 
 :RUN_ALL
-call :PREPARE
+call :UPDATE
 call :BUILD
 call :ARCHIVE
 call :IPA
