@@ -8,7 +8,7 @@ BUILD_ROOT="/Users/admin/Documents/GitHub/kinder/_build"
 PROJECT_PATH="$BUILD_ROOT/ios"
 ARCHIVE_PATH="$BUILD_ROOT/Archive.xcarchive"
 EXPORT_PATH="$BUILD_ROOT/IPA"
-EXPORT_OPTIONS="/Users/admin/Documents/GitHub/zAutoBuildAPD_MAC/ExportOptions.plist"
+EXPORT_OPTIONS="/Users/admin/Documents/GitHub/BuildIOSFromWindows/ScriptsBuildOnMac/ExportOptions.plist"
 
 # Windows shared folder
 WINDOW_SHARE="/Volumes/Shared_Write/IOS_auto_build"
@@ -73,7 +73,7 @@ elif [ "$BUILD_TYPE" == "Copy" ]; then
 
     TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 
-    DEST_FOLDER="$WINDOW_SHARE/IPA/$TIMESTAMP"
+    DEST_FOLDER="$WINDOW_SHARE/$TIMESTAMP"
 
     mkdir -p "$DEST_FOLDER"
 
