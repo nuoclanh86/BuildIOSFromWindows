@@ -23,3 +23,5 @@ SCHEME="Unity-iPhone"
 CONFIGURATION="Release"
 
 
+echo "Current time: $(date '+%Y-%m-%d %H:%M:%S')"
+
