@@ -1,5 +1,8 @@
 #!/bin/bash
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "$SCRIPT_DIR/config.sh"
+
 echo
 echo "===================================================="
 echo " Start build-ios-APD"
@@ -10,9 +13,6 @@ START_TIME=$(date +%s)
 
 STORE_TYPE=$1
 BUILD_CONFIG=$2
-
-UNITY="/Applications/Unity/Hub/Editor/6000.3.12f1/Unity.app/Contents/MacOS/Unity"
-PROJECT="/Users/admin/Documents/GitHub/kinder"
 
 echo "Store Type  : $STORE_TYPE"
 echo "Build Config: $BUILD_CONFIG"

@@ -1,11 +1,10 @@
 #!/bin/bash
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "$SCRIPT_DIR/config.sh"
+
 echo
 echo "========== Run git on Mac =========="
-
-PROJECT="/Users/admin/Documents/GitHub/BuildIOSFromWindows"
-
-export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
 echo "PATH=$PATH"
 echo "git-lfs=$(which git-lfs)"

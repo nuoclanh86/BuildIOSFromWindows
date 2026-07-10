@@ -1,26 +1,17 @@
 #!/bin/bash
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "$SCRIPT_DIR/config.sh"
+
 set -e
 
 BUILD_TYPE=$1
-
-BUILD_ROOT="/Users/admin/Documents/GitHub/kinder/_build"
-PROJECT_PATH="$BUILD_ROOT/ios"
-ARCHIVE_PATH="$BUILD_ROOT/Archive.xcarchive"
-EXPORT_PATH="$BUILD_ROOT/IPA"
-EXPORT_OPTIONS="/Users/admin/Documents/GitHub/BuildIOSFromWindows/ScriptsBuildOnMac/ExportOptions.plist"
-
-# Windows shared folder
-WINDOW_SHARE="/Volumes/Shared_Write/IOS_auto_build"
-
-SCHEME="Unity-iPhone"
-CONFIGURATION="Release"
 
 echo "Project : $PROJECT_PATH"
 echo "Scheme  : $SCHEME"
 echo "Config  : $CONFIGURATION"
 
-    security unlock-keychain -p "1234567890?a" ~/Library/Keychains/login.keychain-db
+security unlock-keychain -p "1234567890?a" ~/Library/Keychains/login.keychain-db
 
 if [ "$BUILD_TYPE" == "Archive" ]; then
 
