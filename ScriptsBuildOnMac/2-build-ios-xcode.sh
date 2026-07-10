@@ -40,6 +40,7 @@ echo
 
 if [ $RESULT -eq 0 ]; then
     echo "========== BUILD SUCCESS =========="
+	echo "Current time: $(date '+%Y-%m-%d %H:%M:%S')"
 else
     echo "========== BUILD FAILED =========="
 fi
