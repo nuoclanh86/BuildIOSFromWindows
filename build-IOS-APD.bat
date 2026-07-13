@@ -105,6 +105,7 @@ ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/4-git-show-info.sh" > "%LOG_FOLDER%\4
 exit /b %ERRORLEVEL%
 
 :CHECK_ERROR
+echo Current Time: %DATE% %TIME%
 if errorlevel 1 (
     echo.
     echo ========================================
