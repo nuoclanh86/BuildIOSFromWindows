@@ -18,14 +18,15 @@ echo "git-lfs=$(which git-lfs)"
 
 cd "$PROJECT"
 
+echo
+echo "Current directory: $(pwd)"
+echo "========== Delete old build folder =========="
 echo "Delete old build..."
 rm -rf "$PROJECT/_build"
-
 echo "Create build folder..."
 mkdir -p "$PROJECT/_build"
 
 echo
-echo "Current directory: $(pwd)"
 echo "========== git - clean =========="
 
 git clean -fd
