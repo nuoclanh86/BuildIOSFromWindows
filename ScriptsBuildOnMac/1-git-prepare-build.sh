@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_DIR/0-config.sh"
 
@@ -14,7 +16,7 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 echo "PATH=$PATH"
 echo "git-lfs=$(which git-lfs)"
 
-cd "$PROJECT" || exit 1
+cd "$PROJECT"
 
 echo
 echo "Current directory: $(pwd)"

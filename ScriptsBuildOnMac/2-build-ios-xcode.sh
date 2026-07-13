@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_DIR/0-config.sh"
 
@@ -18,7 +20,7 @@ echo "Store Type  : $STORE_TYPE"
 echo "Build Config: $BUILD_CONFIG"
 echo
 
-cd "$PROJECT" || exit 1
+cd "$PROJECT"
 
 "$UNITY" \
 -projectPath "$PROJECT" \

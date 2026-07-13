@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_DIR/0-config.sh"
 
@@ -9,7 +11,7 @@ echo "========== Run git on Mac =========="
 echo "PATH=$PATH"
 echo "git-lfs=$(which git-lfs)"
 
-cd "$PROJECT" || exit 1
+cd "$PROJECT"
 
 echo
 echo "========== git - info current branch =========="

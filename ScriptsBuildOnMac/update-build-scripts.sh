@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_DIR/0-config.sh"
 
@@ -9,7 +11,7 @@ echo "========== Run git on Mac =========="
 echo "PATH=$PATH"
 echo "git-lfs=$(which git-lfs)"
 
-cd "$BUILD_SCRIPT_FOLDER" || exit 1
+cd "$BUILD_SCRIPT_FOLDER"
 
 echo
 echo "Current directory: $(pwd)"
