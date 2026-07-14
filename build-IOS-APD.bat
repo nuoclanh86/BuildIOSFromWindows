@@ -46,21 +46,27 @@ goto END
 :RUN_ALL
 call :UPDATE
 call :CHECK_ERROR Update
+if errorlevel 1 goto END
 
 call :BUILD
 call :CHECK_ERROR Build
+if errorlevel 1 goto END
 
 call :ARCHIVE
 call :CHECK_ERROR Archive
+if errorlevel 1 goto END
 
 call :IPA
 call :CHECK_ERROR IPA
+if errorlevel 1 goto END
 
 call :COPY
 call :CHECK_ERROR Copy
+if errorlevel 1 goto END
 
 call :SHOWINFO
 call :CHECK_ERROR ShowInfo
+if errorlevel 1 goto END
 
 echo.
 echo ========================================
@@ -105,7 +111,7 @@ ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/4-git-show-info.sh" > "%LOG_FOLDER%\4
 exit /b %ERRORLEVEL%
 
 :CHECK_ERROR
-echo Current Time: %DATE% %TIME%
+echo Finished This Step at : %DATE% %TIME%
 if errorlevel 1 (
     echo.
     echo ========================================
