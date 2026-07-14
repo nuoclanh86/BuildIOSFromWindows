@@ -77,7 +77,7 @@ goto END
 :UPDATE
 echo.
 echo ----- Window - 1-git-prepare-build.sh %BRANCH%
-ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/1-git-prepare-build.sh" %BRANCH% > "%LOG_FOLDER%\1-git-prepare-build.log" 2>&1
+ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/1-git-prepare-build.sh" %BRANCH%
 exit /b %ERRORLEVEL%
 
 :BUILD
@@ -101,13 +101,13 @@ exit /b %ERRORLEVEL%
 :COPY
 echo.
 echo ----- Window - 3-build-ios-ipa.sh Copy IPA
-ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/3-build-ios-ipa.sh" Copy > "%LOG_FOLDER%\33-build-ios-ipa_copyIPA.log" 2>&1
+ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/3-build-ios-ipa.sh" Copy
 exit /b %ERRORLEVEL%
 
 :SHOWINFO
 echo.
 echo ----- Window - 4-git-show-info.sh
-ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/4-git-show-info.sh" > "%LOG_FOLDER%\4-git-show-info.log" 2>&1
+ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/4-git-show-info.sh"
 exit /b %ERRORLEVEL%
 
 :CHECK_ERROR
