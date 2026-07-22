@@ -16,6 +16,14 @@ if errorlevel 1 (
 )
 
 REM =====================================================
+REM Special preset
+REM =====================================================
+if /I "%~1"=="tung" (
+    set BRANCH=feature/tung/prototype-v7
+    goto RUN_ALL
+)
+
+REM =====================================================
 REM No parameter -> run all
 REM =====================================================
 if "%~1"=="" goto RUN_ALL
