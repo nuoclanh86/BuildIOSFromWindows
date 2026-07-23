@@ -1,135 +1,150 @@
-@echo off
+#!/bin/bash
 
-set BRANCH=feature/toy-agent/prototype-v7/develop
-REM set BRANCH=feature/tung/prototype-v7
-set STORE_TYPE=global
-set BUILD_CONFIG=releaseBuild
+set -e
 
-set MAC_AUTO_BUILD=Users/admin/Documents/GitHub/BuildIOSFromWindows/ScriptsBuildOnMac
+BRANCH="feature/toy-agent/prototype-v7/develop"
+# BRANCH="feature/tung/prototype-v7"
 
-call create-log-folder.bat
+STORE_TYPE="global"
+BUILD_CONFIG="releaseBuild"
 
-if errorlevel 1 (
-    echo Cannot create log folder.
-    pause
-    exit /b 1
-)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-REM =====================================================
-REM Special preset
-REM =====================================================
-if /I "%~1"=="tung" (
-    set BRANCH=feature/tung/prototype-v7
-    goto RUN_ALL
-)
+#=====================================================
+# Special preset
+#=====================================================
+if [[ "$1" == "tung" ]]; then
+    BRANCH="feature/tung/prototype-v7"
+    MODE="all"
+elif [[ -z "$1" ]]; then
+    MODE="all"
+else
+    MODE="$1"
+fi
 
-REM =====================================================
-REM No parameter -> run all
-REM =====================================================
-if "%~1"=="" goto RUN_ALL
+check_error()
+{
+    local STEP="$1"
+    local CODE=$2
 
-REM =====================================================
-REM Run specific step
-REM =====================================================
+    echo "Finished This Step at : $(date)"
 
-if /I "%~1"=="update" goto UPDATE
-if /I "%~1"=="build" goto BUILD
-if /I "%~1"=="archive" goto ARCHIVE
-if /I "%~1"=="ipa" goto IPA
-if /I "%~1"=="copy" goto COPY
-if /I "%~1"=="info" goto SHOWINFO
+    if [[ $CODE -ne 0 ]]; then
+        echo
+        echo "========================================"
+        echo "BUILD FAILED at step: $STEP"
+        echo "Exit Code: $CODE"
+        echo "========================================"
+        exit $CODE
+    fi
+}
 
-echo Unknown parameter: %~1
-echo.
-echo Usage:
-echo     build.bat
-echo     build.bat update
-echo     build.bat build
-echo     build.bat archive
-echo     build.bat ipa
-echo     build.bat copy
-echo     build.bat info
-goto END
+run_update()
+{
+    echo
+    echo "----- MAC - 1-git-prepare-build.sh $BRANCH"
 
-:RUN_ALL
-call :UPDATE
-call :CHECK_ERROR Update
-if errorlevel 1 goto END
+    "$SCRIPT_DIR/1-git-prepare-build.sh" "$BRANCH"
+    check_error "Update" $?
+}
 
-call :BUILD
-call :CHECK_ERROR Build
-if errorlevel 1 goto END
+run_build()
+{
+    echo
+    echo "----- MAC - 2-build-ios-xcode.sh $STORE_TYPE $BUILD_CONFIG"
 
-call :ARCHIVE
-call :CHECK_ERROR Archive
-if errorlevel 1 goto END
+    "$SCRIPT_DIR/2-build-ios-xcode.sh" "$STORE_TYPE" "$BUILD_CONFIG"
+    check_error "Build" $?
+}
 
-call :IPA
-call :CHECK_ERROR IPA
-if errorlevel 1 goto END
+run_archive()
+{
+    echo
+    echo "----- MAC - 3-build-ios-ipa.sh Archive"
 
-call :COPY
-call :CHECK_ERROR Copy
-if errorlevel 1 goto END
+    "$SCRIPT_DIR/3-build-ios-ipa.sh" Archive
+    check_error "Archive" $?
+}
 
-call :SHOWINFO
-call :CHECK_ERROR ShowInfo
-if errorlevel 1 goto END
+run_ipa()
+{
+    echo
+    echo "----- MAC - 3-build-ios-ipa.sh IPA"
 
-echo.
-echo ========================================
-echo           BUILD SUCCESS!
-echo ========================================
-goto END
+    "$SCRIPT_DIR/3-build-ios-ipa.sh" IPA
+    check_error "IPA" $?
+}
 
-:UPDATE
-echo.
-echo ----- MAC - 1-git-prepare-build.sh %BRANCH%
-"/%MAC_AUTO_BUILD%/1-git-prepare-build.sh" %BRANCH%
-exit /b %ERRORLEVEL%
+run_copy()
+{
+    echo
+    echo "----- MAC - Copy IPA"
 
-:BUILD
-echo.
-echo ----- MAC - 2-build-ios-xcode.sh %STORE_TYPE% %BUILD_CONFIG%
-"/%MAC_AUTO_BUILD%/2-build-ios-xcode.sh" %STORE_TYPE% %BUILD_CONFIG% > "%LOG_FOLDER%\2-build-ios-xcode.log" 2>&1
-exit /b %ERRORLEVEL%
+    # "$SCRIPT_DIR/3-build-ios-ipa.sh" Copy
 
-:ARCHIVE
-echo.
-echo ----- MAC - 3-build-ios-ipa.sh Archive
-"/%MAC_AUTO_BUILD%/3-build-ios-ipa.sh" Archive > "%LOG_FOLDER%\31-build-ios-ipa_Archive.log" 2>&1
-exit /b %ERRORLEVEL%
+    check_error "Copy" 0
+}
 
-:IPA
-echo.
-echo ----- MAC - 3-build-ios-ipa.sh IPA
-"/%MAC_AUTO_BUILD%/3-build-ios-ipa.sh" IPA > "%LOG_FOLDER%\32-build-ios-ipa_IPA.log" 2>&1
-exit /b %ERRORLEVEL%
+run_info()
+{
+    echo
+    echo "----- MAC - 4-git-show-info.sh"
 
-:COPY
-echo.
-echo ----- MAC - 3-build-ios-ipa.sh Copy IPA
-# "/%MAC_AUTO_BUILD%/3-build-ios-ipa.sh" Copy
-exit /b %ERRORLEVEL%
+    "$SCRIPT_DIR/4-git-show-info.sh"
+    check_error "ShowInfo" $?
+}
 
-:SHOWINFO
-echo.
-echo ----- MAC - 4-git-show-info.sh
-"/%MAC_AUTO_BUILD%/4-git-show-info.sh"
-exit /b %ERRORLEVEL%
+case "$MODE" in
+    all)
+        run_update
+        run_build
+        run_archive
+        run_ipa
+        run_copy
+        run_info
 
-:CHECK_ERROR
-echo Finished This Step at : %DATE% %TIME%
-if errorlevel 1 (
-    echo.
-    echo ========================================
-    echo BUILD FAILED at step: %1
-    echo Exit Code: %ERRORLEVEL%
-    echo ========================================
-    goto END
-)
-exit /b 0
+        echo
+        echo "========================================"
+        echo "          BUILD SUCCESS!"
+        echo "========================================"
+        ;;
 
-:END
-pause
-exit /b
+    update)
+        run_update
+        ;;
+
+    build)
+        run_build
+        ;;
+
+    archive)
+        run_archive
+        ;;
+
+    ipa)
+        run_ipa
+        ;;
+
+    copy)
+        run_copy
+        ;;
+
+    info)
+        run_info
+        ;;
+
+    *)
+        echo "Unknown parameter: $MODE"
+        echo
+        echo "Usage:"
+        echo "  ./build-IOS-APD-Mac.sh"
+        echo "  ./build-IOS-APD-Mac.sh update"
+        echo "  ./build-IOS-APD-Mac.sh build"
+        echo "  ./build-IOS-APD-Mac.sh archive"
+        echo "  ./build-IOS-APD-Mac.sh ipa"
+        echo "  ./build-IOS-APD-Mac.sh copy"
+        echo "  ./build-IOS-APD-Mac.sh info"
+        echo "  ./build-IOS-APD-Mac.sh tung"
+        exit 1
+        ;;
+esac
