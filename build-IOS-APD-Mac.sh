@@ -84,38 +84,38 @@ goto END
 
 :UPDATE
 echo.
-echo ----- Window - 1-git-prepare-build.sh %BRANCH%
-ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/1-git-prepare-build.sh" %BRANCH%
+echo ----- MAC - 1-git-prepare-build.sh %BRANCH%
+"/%MAC_AUTO_BUILD%/1-git-prepare-build.sh" %BRANCH%
 exit /b %ERRORLEVEL%
 
 :BUILD
 echo.
-echo ----- Window - 2-build-ios-xcode.sh %STORE_TYPE% %BUILD_CONFIG%
-ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/2-build-ios-xcode.sh" %STORE_TYPE% %BUILD_CONFIG% > "%LOG_FOLDER%\2-build-ios-xcode.log" 2>&1
+echo ----- MAC - 2-build-ios-xcode.sh %STORE_TYPE% %BUILD_CONFIG%
+"/%MAC_AUTO_BUILD%/2-build-ios-xcode.sh" %STORE_TYPE% %BUILD_CONFIG% > "%LOG_FOLDER%\2-build-ios-xcode.log" 2>&1
 exit /b %ERRORLEVEL%
 
 :ARCHIVE
 echo.
-echo ----- Window - 3-build-ios-ipa.sh Archive
-ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/3-build-ios-ipa.sh" Archive > "%LOG_FOLDER%\31-build-ios-ipa_Archive.log" 2>&1
+echo ----- MAC - 3-build-ios-ipa.sh Archive
+"/%MAC_AUTO_BUILD%/3-build-ios-ipa.sh" Archive > "%LOG_FOLDER%\31-build-ios-ipa_Archive.log" 2>&1
 exit /b %ERRORLEVEL%
 
 :IPA
 echo.
-echo ----- Window - 3-build-ios-ipa.sh IPA
-ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/3-build-ios-ipa.sh" IPA > "%LOG_FOLDER%\32-build-ios-ipa_IPA.log" 2>&1
+echo ----- MAC - 3-build-ios-ipa.sh IPA
+"/%MAC_AUTO_BUILD%/3-build-ios-ipa.sh" IPA > "%LOG_FOLDER%\32-build-ios-ipa_IPA.log" 2>&1
 exit /b %ERRORLEVEL%
 
 :COPY
 echo.
-echo ----- Window - 3-build-ios-ipa.sh Copy IPA
-ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/3-build-ios-ipa.sh" Copy
+echo ----- MAC - 3-build-ios-ipa.sh Copy IPA
+# "/%MAC_AUTO_BUILD%/3-build-ios-ipa.sh" Copy
 exit /b %ERRORLEVEL%
 
 :SHOWINFO
 echo.
-echo ----- Window - 4-git-show-info.sh
-ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/4-git-show-info.sh"
+echo ----- MAC - 4-git-show-info.sh
+"/%MAC_AUTO_BUILD%/4-git-show-info.sh"
 exit /b %ERRORLEVEL%
 
 :CHECK_ERROR
