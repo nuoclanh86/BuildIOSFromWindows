@@ -8,7 +8,7 @@ BRANCH="feature/toy-agent/prototype-v7/develop"
 STORE_TYPE="global"
 BUILD_CONFIG="releaseBuild"
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(pwd)/ScriptsBuildOnMac"
 
 #=====================================================
 # Special preset
