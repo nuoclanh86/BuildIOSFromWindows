@@ -3,7 +3,7 @@
 set BRANCH=feature/toy-agent/prototype-v7/develop
 REM set BRANCH=feature/tung/prototype-v7
 set STORE_TYPE=global
-set BUILD_CONFIG=releaseBuild
+set BUILD_CONFIG=
 
 set MAC_AUTO_BUILD=Users/admin/Documents/GitHub/BuildIOSFromWindows/ScriptsBuildOnMac
 
@@ -13,6 +13,15 @@ if errorlevel 1 (
     echo Cannot create log folder.
     pause
     exit /b 1
+)
+
+REM =====================================================
+REM Check if "release" parameter exists
+REM =====================================================
+for %%A in (%*) do (
+    if /I "%%A"=="release" (
+        set BUILD_CONFIG=releaseBuild
+    )
 )
 
 REM =====================================================
