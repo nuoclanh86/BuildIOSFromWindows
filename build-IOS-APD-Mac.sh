@@ -6,25 +6,18 @@ BRANCH="feature/toy-agent/prototype-v7/develop"
 # BRANCH="feature/tung/prototype-v7"
 
 STORE_TYPE="global"
-BUILD_CONFIG="non"
+BUILD_CONFIG="fastBuild"
 
 SCRIPT_DIR="$(pwd)/ScriptsBuildOnMac"
-
-#=====================================================
-# Check if "release" parameter exists
-#=====================================================
-for arg in "$@"; do
-    if [[ "$arg" == "release" ]]; then
-        BUILD_CONFIG="releaseBuild"
-        break
-    fi
-done
 
 #=====================================================
 # Special preset
 #=====================================================
 if [[ "$1" == "tung" ]]; then
     BRANCH="feature/tung/prototype-v7"
+    MODE="all"
+elif [[ "$1" == "release" ]]; then
+    BUILD_CONFIG="releaseBuild"
     MODE="all"
 elif [[ -z "$1" ]]; then
     MODE="all"
