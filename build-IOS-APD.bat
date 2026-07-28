@@ -3,7 +3,7 @@
 set BRANCH=feature/toy-agent/prototype-v7/develop
 REM set BRANCH=feature/tung/prototype-v7
 set STORE_TYPE=global
-set BUILD_CONFIG=
+set BUILD_CONFIG=non
 
 set MAC_AUTO_BUILD=Users/admin/Documents/GitHub/BuildIOSFromWindows/ScriptsBuildOnMac
 

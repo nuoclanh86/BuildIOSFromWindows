@@ -6,7 +6,7 @@ BRANCH="feature/toy-agent/prototype-v7/develop"
 # BRANCH="feature/tung/prototype-v7"
 
 STORE_TYPE="global"
-BUILD_CONFIG=""
+BUILD_CONFIG="non"
 
 SCRIPT_DIR="$(pwd)/ScriptsBuildOnMac"
 
