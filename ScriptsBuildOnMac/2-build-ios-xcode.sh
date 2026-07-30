@@ -12,6 +12,7 @@ echo "===================================================="
 echo
 
 START_TIME=$(date +%s)
+SECONDS=0
 
 STORE_TYPE=$1
 BUILD_CONFIG=$2
@@ -46,5 +47,10 @@ if [ $RESULT -eq 0 ]; then
 else
     echo "========== BUILD FAILED =========="
 fi
+
+elapsed=$SECONDS
+hours=$((elapsed / 3600))
+minutes=$(((elapsed % 3600) / 60))
+echo "========== Finished in ${hours} hr ${minutes} min =========="
 
 exit $RESULT

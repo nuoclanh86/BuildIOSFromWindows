@@ -13,6 +13,8 @@ echo "Config  : $CONFIGURATION"
 
 security unlock-keychain -p "1234567890?a" ~/Library/Keychains/login.keychain-db
 
+SECONDS=0
+
 if [ "$BUILD_TYPE" == "Archive" ]; then
 
     echo
@@ -27,6 +29,11 @@ if [ "$BUILD_TYPE" == "Archive" ]; then
 
     echo
     echo "========== Xcode Archive DONE =========="
+	
+	elapsed=$SECONDS
+	hours=$((elapsed / 3600))
+	minutes=$(((elapsed % 3600) / 60))
+	echo "========== Finished in ${hours} hr ${minutes} min =========="
 
 elif [ "$BUILD_TYPE" == "IPA" ]; then
 
@@ -42,6 +49,11 @@ elif [ "$BUILD_TYPE" == "IPA" ]; then
     -exportOptionsPlist "$EXPORT_OPTIONS"
 
     echo "========== Export IPA DONE =========="
+	
+	elapsed=$SECONDS
+	hours=$((elapsed / 3600))
+	minutes=$(((elapsed % 3600) / 60))
+	echo "========== Finished in ${hours} hr ${minutes} min =========="
 
 elif [ "$BUILD_TYPE" == "Copy" ]; then
 
@@ -81,6 +93,11 @@ elif [ "$BUILD_TYPE" == "Copy" ]; then
 
     echo
     echo "========== Copy IPA DONE =========="
+	
+	elapsed=$SECONDS
+	hours=$((elapsed / 3600))
+	minutes=$(((elapsed % 3600) / 60))
+	echo "========== Finished in ${hours} hr ${minutes} min =========="
 
 else
 

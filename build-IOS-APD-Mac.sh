@@ -2,6 +2,8 @@
 
 set -e
 
+SECONDS=0
+
 BRANCH="feature/toy-agent/prototype-v7/develop"
 # BRANCH="feature/tung/prototype-v7"
 
@@ -31,6 +33,13 @@ check_error()
     local CODE=$2
 
     echo "Finished This Step at : $(date)"
+	elapsed=$SECONDS
+
+	hours=$((elapsed / 3600))
+	minutes=$(((elapsed % 3600) / 60))
+
+	echo
+	echo "========== Finished in ${hours} hr ${minutes} min =========="
 
     if [[ $CODE -ne 0 ]]; then
         echo
