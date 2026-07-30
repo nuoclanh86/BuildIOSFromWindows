@@ -147,6 +147,7 @@ case "$MODE" in
         echo "  ./build-IOS-APD-Mac.sh ipa"
         echo "  ./build-IOS-APD-Mac.sh copy"
         echo "  ./build-IOS-APD-Mac.sh info"
+        echo "  ./build-IOS-APD-Mac.sh release"		
         echo "  ./build-IOS-APD-Mac.sh tung"
         exit 1
         ;;
