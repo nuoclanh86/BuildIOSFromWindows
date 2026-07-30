@@ -101,25 +101,25 @@ exit /b %ERRORLEVEL%
 :BUILD
 echo.
 echo ----- Window - 2-build-ios-xcode.sh %STORE_TYPE% %BUILD_CONFIG%
-ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/2-build-ios-xcode.sh" %STORE_TYPE% %BUILD_CONFIG% > "%LOG_FOLDER%\2-build-ios-xcode.log" 2>&1
+ssh admin@10.219.12.174 "caffeinate /%MAC_AUTO_BUILD%/2-build-ios-xcode.sh %STORE_TYPE% %BUILD_CONFIG%" > "%LOG_FOLDER%\2-build-ios-xcode.log" 2>&1
 exit /b %ERRORLEVEL%
 
 :ARCHIVE
 echo.
 echo ----- Window - 3-build-ios-ipa.sh Archive
-ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/3-build-ios-ipa.sh" Archive > "%LOG_FOLDER%\31-build-ios-ipa_Archive.log" 2>&1
+ssh admin@10.219.12.174 "caffeinate /%MAC_AUTO_BUILD%/3-build-ios-ipa.sh Archive" > "%LOG_FOLDER%\31-build-ios-ipa_Archive.log" 2>&1
 exit /b %ERRORLEVEL%
 
 :IPA
 echo.
 echo ----- Window - 3-build-ios-ipa.sh IPA
-ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/3-build-ios-ipa.sh" IPA > "%LOG_FOLDER%\32-build-ios-ipa_IPA.log" 2>&1
+ssh admin@10.219.12.174 "caffeinate /%MAC_AUTO_BUILD%/3-build-ios-ipa.sh IPA" > "%LOG_FOLDER%\32-build-ios-ipa_IPA.log" 2>&1
 exit /b %ERRORLEVEL%
 
 :COPY
 echo.
 echo ----- Window - 3-build-ios-ipa.sh Copy IPA
-ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/3-build-ios-ipa.sh" Copy
+ssh admin@10.219.12.174 "caffeinate /%MAC_AUTO_BUILD%/3-build-ios-ipa.sh Copy"
 exit /b %ERRORLEVEL%
 
 :SHOWINFO

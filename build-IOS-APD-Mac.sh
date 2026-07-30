@@ -56,7 +56,7 @@ run_build()
     echo
     echo "----- MAC - 2-build-ios-xcode.sh $STORE_TYPE $BUILD_CONFIG"
 
-    "$SCRIPT_DIR/2-build-ios-xcode.sh" "$STORE_TYPE" "$BUILD_CONFIG"
+    caffeinate "$SCRIPT_DIR/2-build-ios-xcode.sh" "$STORE_TYPE" "$BUILD_CONFIG"
     check_error "Build" $?
 }
 
@@ -65,7 +65,7 @@ run_archive()
     echo
     echo "----- MAC - 3-build-ios-ipa.sh Archive"
 
-    "$SCRIPT_DIR/3-build-ios-ipa.sh" Archive
+    caffeinate "$SCRIPT_DIR/3-build-ios-ipa.sh" Archive
     check_error "Archive" $?
 }
 
@@ -74,7 +74,7 @@ run_ipa()
     echo
     echo "----- MAC - 3-build-ios-ipa.sh IPA"
 
-    "$SCRIPT_DIR/3-build-ios-ipa.sh" IPA
+    caffeinate "$SCRIPT_DIR/3-build-ios-ipa.sh" IPA
     check_error "IPA" $?
 }
 
