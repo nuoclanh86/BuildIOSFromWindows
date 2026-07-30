@@ -50,13 +50,15 @@ if /I "%~1"=="info" goto SHOWINFO
 echo Unknown parameter: %~1
 echo.
 echo Usage:
-echo     build.bat
-echo     build.bat update
-echo     build.bat build
-echo     build.bat archive
-echo     build.bat ipa
-echo     build.bat copy
-echo     build.bat info
+echo     build-IOS-APD.bat
+echo     build-IOS-APD.bat release
+echo     build-IOS-APD.bat tung
+echo     build-IOS-APD.bat update
+echo     build-IOS-APD.bat build
+echo     build-IOS-APD.bat archive
+echo     build-IOS-APD.bat ipa
+echo     build-IOS-APD.bat copy
+echo     build-IOS-APD.bat info
 goto END
 
 :RUN_ALL
