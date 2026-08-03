@@ -5,8 +5,7 @@ REM set BRANCH=feature/tung/prototype-v7
 set STORE_TYPE=global
 set BUILD_CONFIG=fastBuild
 
-set MAC_AUTO_BUILD=Users/admin/Documents/GitHub/BuildIOSFromWindows
-set SCRIPTS_FOLDER=ScriptsBuildOnMac
+set MAC_AUTO_BUILD=Users/admin/Documents/GitHub/BuildIOSFromWindows/ScriptsBuildOnMac
 
 call create-log-folder.bat
 
@@ -96,26 +95,25 @@ goto END
 :UPDATE
 echo.
 echo ----- Window - 1-git-prepare-build.sh %BRANCH%
-REM ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/1-git-prepare-build.sh" %BRANCH%
+ssh admin@10.219.12.174 "/%MAC_AUTO_BUILD%/1-git-prepare-build.sh" %BRANCH%
 exit /b %ERRORLEVEL%
 
 :BUILD
 echo.
 echo ----- Window - 2-build-ios-xcode.sh %STORE_TYPE% %BUILD_CONFIG%
-REM ssh admin@10.219.12.174 "caffeinate /%MAC_AUTO_BUILD%/2-build-ios-xcode.sh %STORE_TYPE% %BUILD_CONFIG%" > "%LOG_FOLDER%\2-build-ios-xcode.log" 2>&1
-ssh admin@10.219.12.174 "caffeinate /%MAC_AUTO_BUILD%/build-IOS-APD-Mac.sh"
+ssh admin@10.219.12.174 "caffeinate /%MAC_AUTO_BUILD%/2-build-ios-xcode.sh %STORE_TYPE% %BUILD_CONFIG%" > "%LOG_FOLDER%\2-build-ios-xcode.log" 2>&1
 exit /b %ERRORLEVEL%
 
 :ARCHIVE
 echo.
 echo ----- Window - 3-build-ios-ipa.sh Archive
-REM ssh admin@10.219.12.174 "caffeinate /%MAC_AUTO_BUILD%/3-build-ios-ipa.sh Archive" > "%LOG_FOLDER%\31-build-ios-ipa_Archive.log" 2>&1
+ssh admin@10.219.12.174 "caffeinate /%MAC_AUTO_BUILD%/3-build-ios-ipa.sh Archive" > "%LOG_FOLDER%\31-build-ios-ipa_Archive.log" 2>&1
 exit /b %ERRORLEVEL%
 
 :IPA
 echo.
 echo ----- Window - 3-build-ios-ipa.sh IPA
-REM ssh admin@10.219.12.174 "caffeinate /%MAC_AUTO_BUILD%/3-build-ios-ipa.sh IPA" > "%LOG_FOLDER%\32-build-ios-ipa_IPA.log" 2>&1
+ssh admin@10.219.12.174 "caffeinate /%MAC_AUTO_BUILD%/3-build-ios-ipa.sh IPA" > "%LOG_FOLDER%\32-build-ios-ipa_IPA.log" 2>&1
 exit /b %ERRORLEVEL%
 
 :COPY
