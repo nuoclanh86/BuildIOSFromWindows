@@ -10,7 +10,8 @@ BRANCH="feature/toy-agent/prototype-v7/develop"
 STORE_TYPE="global"
 BUILD_CONFIG="fastBuild"
 
-SCRIPT_DIR="$(pwd)/ScriptsBuildOnMac"
+MAC_AUTO_BUILD_DIR="Users/admin/Documents/GitHub/BuildIOSFromWindows"
+SCRIPT_DIR="$(MAC_AUTO_BUILD_DIR)/ScriptsBuildOnMac"
 
 #=====================================================
 # Special preset
