@@ -10,7 +10,9 @@ BRANCH="feature/toy-agent/prototype-v7/develop"
 STORE_TYPE="global"
 BUILD_CONFIG="fastBuild"
 
-SCRIPT_DIR="$(pwd)/ScriptsBuildOnMac"
+PROJECT_DIR="/Users/admin/Documents/GitHub"
+SCRIPT_DIR="${PROJECT_DIR}/ScriptsBuildOnMac"
+MAC_FOLDER_SHARED="${PROJECT_DIR}/FolderShared"
 
 #=====================================================
 # Special preset
@@ -39,7 +41,11 @@ check_error()
 	minutes=$(((elapsed % 3600) / 60))
 
 	echo
+	echo
 	echo "========== Finished in ${hours} hr ${minutes} min =========="
+	echo
+	echo
+	echo
 
     if [[ $CODE -ne 0 ]]; then
         echo
@@ -92,7 +98,7 @@ run_copy()
     echo
     echo "----- MAC - Copy IPA"
 
-    # "$SCRIPT_DIR/3-build-ios-ipa.sh" Copy
+    "$SCRIPT_DIR/3-build-ios-ipa.sh" Copy
 
     check_error "Copy" 0
 }

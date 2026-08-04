@@ -57,9 +57,6 @@ elif [ "$BUILD_TYPE" == "IPA" ]; then
 
 elif [ "$BUILD_TYPE" == "Copy" ]; then
 
-    echo
-    echo "========== Copy IPA to Windows Share =========="
-
     IPA_FILE=$(find "$EXPORT_PATH" -name "*.ipa" | head -n 1)
 
     if [ -z "$IPA_FILE" ]; then
@@ -67,19 +64,46 @@ elif [ "$BUILD_TYPE" == "Copy" ]; then
         exit 1
     fi
 
+    TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+
+    #
+    # Copy IPA to Mac Share
+    #
+    echo
+    echo "========== Copy IPA to Mac Share =========="
+
+    if [ ! -d "$MAC_FOLDER_SHARED" ]; then
+        echo "ERROR: Mac share folder not found: $MAC_FOLDER_SHARED"
+        exit 1
+    fi
+
+    MAC_DEST_FOLDER="$MAC_FOLDER_SHARED/$TIMESTAMP"
+    mkdir -p "$MAC_DEST_FOLDER"
+
+    echo
+    echo "Copy IPA:"
+    echo "$IPA_FILE"
+    echo "To:"
+    echo "$MAC_DEST_FOLDER"
+
+    cp "$IPA_FILE" "$MAC_DEST_FOLDER/"
+
+    echo
+    echo "========== Copy IPA to Mac Share DONE =========="
+
+    #
+    # Copy IPA to Windows Share
+    #
+    echo
+    echo "========== Copy IPA to Windows Share =========="
 
     if [ ! -d "$WINDOW_SHARE" ]; then
         echo "ERROR: Windows share not mounted: $WINDOW_SHARE"
         exit 1
     fi
 
-
-    TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
-
     DEST_FOLDER="$WINDOW_SHARE/$TIMESTAMP"
-
     mkdir -p "$DEST_FOLDER"
-
 
     echo
     echo "Copy IPA:"
@@ -87,17 +111,20 @@ elif [ "$BUILD_TYPE" == "Copy" ]; then
     echo "To:"
     echo "$DEST_FOLDER"
 
-
     cp "$IPA_FILE" "$DEST_FOLDER/"
 
-
     echo
-    echo "========== Copy IPA DONE =========="
-	
+    echo "========== Copy IPA to Windows Share DONE =========="
+
 	elapsed=$SECONDS
 	hours=$((elapsed / 3600))
 	minutes=$(((elapsed % 3600) / 60))
+	echo
+	echo
 	echo "========== Finished in ${hours} hr ${minutes} min =========="
+	echo
+	echo
+	echo
 
 else
 
