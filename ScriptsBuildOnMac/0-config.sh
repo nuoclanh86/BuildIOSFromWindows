@@ -19,8 +19,6 @@ BRANCH="feature/toy-agent/prototype-v7/develop"
 STORE_TYPE="global"
 BUILD_CONFIG="fastBuild"
 
-BUILT_IPA="unknown"
-
 
 # Default Path
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
@@ -33,6 +31,4 @@ EXPORT_OPTIONS="$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/ExportOptions.plist"
 SCHEME="Unity-iPhone"
 CONFIGURATION="Release"
 
-
-echo "Current time: $(date '+%Y-%m-%d %H:%M:%S')"
 

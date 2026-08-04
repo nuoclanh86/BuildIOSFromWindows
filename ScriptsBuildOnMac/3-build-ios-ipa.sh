@@ -6,14 +6,13 @@ source "$SCRIPT_DIR/0-config.sh"
 set -e
 
 BUILD_TYPE=$1
+IPA_BUILT_TYPE=$2
 
 echo "Project : $PROJECT_PATH"
 echo "Scheme  : $SCHEME"
 echo "Config  : $CONFIGURATION"
 
 security unlock-keychain -p "1234567890?a" ~/Library/Keychains/login.keychain-db
-
-SECONDS=0
 
 if [ "$BUILD_TYPE" == "Archive" ]; then
 
@@ -29,11 +28,6 @@ if [ "$BUILD_TYPE" == "Archive" ]; then
 
     echo
     echo "========== Xcode Archive DONE =========="
-	
-	elapsed=$SECONDS
-	hours=$((elapsed / 3600))
-	minutes=$(((elapsed % 3600) / 60))
-	echo "========== Finished in ${hours} hr ${minutes} min =========="
 
 elif [ "$BUILD_TYPE" == "IPA" ]; then
 
@@ -49,11 +43,6 @@ elif [ "$BUILD_TYPE" == "IPA" ]; then
     -exportOptionsPlist "$EXPORT_OPTIONS"
 
     echo "========== Export IPA DONE =========="
-	
-	elapsed=$SECONDS
-	hours=$((elapsed / 3600))
-	minutes=$(((elapsed % 3600) / 60))
-	echo "========== Finished in ${hours} hr ${minutes} min =========="
 
 elif [ "$BUILD_TYPE" == "Copy" ]; then
 
@@ -67,9 +56,9 @@ elif [ "$BUILD_TYPE" == "Copy" ]; then
     TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 
     # Rename IPA when copying
-	if [ "$BUILT_IPA" = "ReleaseBuild" ]; then
+	if [ "$IPA_BUILT_TYPE" = "ReleaseBuild" ]; then
 		IPA_SUFFIX="_release"
-	elif [ "$BUILT_IPA" = "cheat" ]; then
+	elif [ "$IPA_BUILT_TYPE" = "cheat" ]; then
 		IPA_SUFFIX="_cheat"
 	else
 		IPA_SUFFIX="_unknown"
@@ -129,25 +118,12 @@ elif [ "$BUILD_TYPE" == "Copy" ]; then
     echo
     echo "========== Copy IPA to Windows Share DONE =========="
 
-    elapsed=$SECONDS
-    hours=$((elapsed / 3600))
-    minutes=$(((elapsed % 3600) / 60))
-
-    echo
-    echo
-    echo "========== Finished in ${hours} hr ${minutes} min =========="
-    echo
-    echo
-    echo
-
 else
-
     echo "ERROR: Invalid build type: $BUILD_TYPE"
     echo "Usage:"
     echo "  ./build.sh Archive"
     echo "  ./build.sh IPA"
     exit 1
-
 fi
 
 echo

@@ -54,7 +54,7 @@ check_error()
 run_update()
 {
     echo
-    echo "----- MAC - 1-git-prepare-build.sh $BRANCH"
+    echo "----- MAC - 1-git-prepare-build.sh $BRANCH -----"
 
     "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/1-git-prepare-build.sh" "$BRANCH"
     check_error "Update" $?
@@ -72,7 +72,7 @@ run_build()
 run_archive()
 {
     echo
-    echo "----- MAC - 3-build-ios-ipa.sh Archive"
+    echo "----- MAC - 3-build-ios-ipa.sh Archive -----"
 
     caffeinate "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/3-build-ios-ipa.sh" Archive
     check_error "Archive" $?
@@ -81,7 +81,7 @@ run_archive()
 run_ipa()
 {
     echo
-    echo "----- MAC - 3-build-ios-ipa.sh IPA"
+    echo "----- MAC - 3-build-ios-ipa.sh IPA -----"
 
     caffeinate "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/3-build-ios-ipa.sh" IPA
     check_error "IPA" $?
@@ -90,9 +90,9 @@ run_ipa()
 run_copy()
 {
     echo
-    echo "----- MAC - Copy IPA"
+    echo "----- MAC - Copy IPA -----"
 
-    "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/3-build-ios-ipa.sh" Copy
+    "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/3-build-ios-ipa.sh" Copy "$BUILT_IPA"
 
     check_error "Copy" 0
 }
@@ -100,7 +100,7 @@ run_copy()
 run_info()
 {
     echo
-    echo "----- MAC - 4-git-show-info.sh"
+    echo "----- MAC - 4-git-show-info.sh -----"
 
     "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/4-git-show-info.sh"
     check_error "ShowInfo" $?
