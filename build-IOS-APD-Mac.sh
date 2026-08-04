@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/0-config.sh"
+source "$(pwd)/ScriptsBuildOnMac/0-config.sh"
 
 set -e
 
