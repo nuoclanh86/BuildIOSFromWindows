@@ -6,12 +6,6 @@ set -e
 
 SECONDS=0
 
-BRANCH="feature/toy-agent/prototype-v7/develop"
-# BRANCH="feature/tung/prototype-v7"
-
-STORE_TYPE="global"
-BUILD_CONFIG="fastBuild"
-
 #=====================================================
 # Special preset
 #=====================================================

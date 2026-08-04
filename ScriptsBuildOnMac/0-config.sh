@@ -10,9 +10,14 @@ UNITY="/Applications/Unity/Hub/Editor/6000.3.12f1/Unity.app/Contents/MacOS/Unity
 
 # Windows shared folder mounted on the Mac
 WINDOW_SHARE="/Volumes/Shared_Write/IOS_auto_build"
-
+# Mac shared folder
 MAC_FOLDER_SHARED="${PROJECT_DIR}/FolderShared"
 
+
+BRANCH="feature/toy-agent/prototype-v7/develop"
+# BRANCH="feature/tung/prototype-v7"
+STORE_TYPE="global"
+BUILD_CONFIG="fastBuild"
 
 
 # Default Path

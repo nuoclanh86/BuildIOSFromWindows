@@ -66,6 +66,17 @@ elif [ "$BUILD_TYPE" == "Copy" ]; then
 
     TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 
+    # Rename IPA when copying
+    if [ "$BUILD_CONFIG" = "ReleaseBuild" ]; then
+        IPA_SUFFIX="_release"
+    else
+        IPA_SUFFIX="_cheat"
+    fi
+
+    IPA_FILENAME=$(basename "$IPA_FILE")
+    IPA_NAME="${IPA_FILENAME%.ipa}"
+    NEW_IPA_NAME="${IPA_NAME}${IPA_SUFFIX}.ipa"
+
     #
     # Copy IPA to Mac Share
     #
@@ -84,9 +95,9 @@ elif [ "$BUILD_TYPE" == "Copy" ]; then
     echo "Copy IPA:"
     echo "$IPA_FILE"
     echo "To:"
-    echo "$MAC_DEST_FOLDER"
+    echo "$MAC_DEST_FOLDER/$NEW_IPA_NAME"
 
-    cp "$IPA_FILE" "$MAC_DEST_FOLDER/"
+    cp "$IPA_FILE" "$MAC_DEST_FOLDER/$NEW_IPA_NAME"
 
     echo
     echo "========== Copy IPA to Mac Share DONE =========="
@@ -109,22 +120,23 @@ elif [ "$BUILD_TYPE" == "Copy" ]; then
     echo "Copy IPA:"
     echo "$IPA_FILE"
     echo "To:"
-    echo "$DEST_FOLDER"
+    echo "$DEST_FOLDER/$NEW_IPA_NAME"
 
-    cp "$IPA_FILE" "$DEST_FOLDER/"
+    cp "$IPA_FILE" "$DEST_FOLDER/$NEW_IPA_NAME"
 
     echo
     echo "========== Copy IPA to Windows Share DONE =========="
 
-	elapsed=$SECONDS
-	hours=$((elapsed / 3600))
-	minutes=$(((elapsed % 3600) / 60))
-	echo
-	echo
-	echo "========== Finished in ${hours} hr ${minutes} min =========="
-	echo
-	echo
-	echo
+    elapsed=$SECONDS
+    hours=$((elapsed / 3600))
+    minutes=$(((elapsed % 3600) / 60))
+
+    echo
+    echo
+    echo "========== Finished in ${hours} hr ${minutes} min =========="
+    echo
+    echo
+    echo
 
 else
 
