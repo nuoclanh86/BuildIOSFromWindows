@@ -67,7 +67,8 @@ run_build()
     echo
     echo "----- MAC - 2-build-ios-xcode.sh $STORE_TYPE $BUILD_CONFIG"
 
-    caffeinate "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/2-build-ios-xcode.sh" "$STORE_TYPE" "$BUILD_CONFIG"
+	"$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/4-git-show-info.sh" >> "$LOG_FILE" 2>&1
+    caffeinate "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/2-build-ios-xcode.sh" "$STORE_TYPE" "$BUILD_CONFIG" >> "$LOG_FILE" 2>&1
     check_error "Build" $?
 }
 
@@ -76,7 +77,7 @@ run_archive()
     echo
     echo "----- MAC - 3-build-ios-ipa.sh Archive -----"
 
-    caffeinate "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/3-build-ios-ipa.sh" Archive
+    caffeinate "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/3-build-ios-ipa.sh" Archive >> "$LOG_FILE" 2>&1
     check_error "Archive" $?
 }
 
@@ -85,7 +86,7 @@ run_ipa()
     echo
     echo "----- MAC - 3-build-ios-ipa.sh IPA -----"
 
-    caffeinate "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/3-build-ios-ipa.sh" IPA
+    caffeinate "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/3-build-ios-ipa.sh" IPA >> "$LOG_FILE" 2>&1
     check_error "IPA" $?
 }
 
