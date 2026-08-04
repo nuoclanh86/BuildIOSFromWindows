@@ -67,10 +67,12 @@ elif [ "$BUILD_TYPE" == "Copy" ]; then
     TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 
     # Rename IPA when copying
-    if [ "$BUILD_CONFIG" = "ReleaseBuild" ]; then
+    if [ "$BUILT_IPA" = "ReleaseBuild" ]; then
         IPA_SUFFIX="_release"
-    else
+    else if [ "$BUILT_IPA" = "cheat" ]; then
         IPA_SUFFIX="_cheat"
+	else
+		IPA_SUFFIX="_unknown"
     fi
 
     IPA_FILENAME=$(basename "$IPA_FILE")

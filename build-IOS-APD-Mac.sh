@@ -9,11 +9,13 @@ SECONDS=0
 #=====================================================
 # Special preset
 #=====================================================
+BUILT_IPA="cheat"
 if [[ "$1" == "tung" ]]; then
     BRANCH="feature/tung/prototype-v7"
     MODE="all"
 elif [[ "$1" == "release" ]]; then
     BUILD_CONFIG="releaseBuild"
+	BUILT_IPA="releaseBuild"
     MODE="all"
 elif [[ -z "$1" ]]; then
     MODE="all"

@@ -19,6 +19,8 @@ BRANCH="feature/toy-agent/prototype-v7/develop"
 STORE_TYPE="global"
 BUILD_CONFIG="fastBuild"
 
+BUILT_IPA="unknown"
+
 
 # Default Path
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
