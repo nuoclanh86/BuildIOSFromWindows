@@ -11,7 +11,7 @@ STORE_TYPE="global"
 BUILD_CONFIG="fastBuild"
 
 PROJECT_DIR="/Users/admin/Documents/GitHub"
-SCRIPT_DIR="${PROJECT_DIR}/ScriptsBuildOnMac"
+SCRIPT_DIR="${PROJECT_DIR}/BuildIOSFromWindows/ScriptsBuildOnMac"
 MAC_FOLDER_SHARED="${PROJECT_DIR}/FolderShared"
 
 #=====================================================
