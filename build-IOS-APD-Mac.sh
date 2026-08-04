@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/0-config.sh"
+
 set -e
 
 SECONDS=0
@@ -9,10 +11,6 @@ BRANCH="feature/toy-agent/prototype-v7/develop"
 
 STORE_TYPE="global"
 BUILD_CONFIG="fastBuild"
-
-PROJECT_DIR="/Users/admin/Documents/GitHub"
-SCRIPT_DIR="${PROJECT_DIR}/BuildIOSFromWindows/ScriptsBuildOnMac"
-MAC_FOLDER_SHARED="${PROJECT_DIR}/FolderShared"
 
 #=====================================================
 # Special preset
@@ -62,7 +60,7 @@ run_update()
     echo
     echo "----- MAC - 1-git-prepare-build.sh $BRANCH"
 
-    "$SCRIPT_DIR/1-git-prepare-build.sh" "$BRANCH"
+    "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/1-git-prepare-build.sh" "$BRANCH"
     check_error "Update" $?
 }
 
@@ -71,7 +69,7 @@ run_build()
     echo
     echo "----- MAC - 2-build-ios-xcode.sh $STORE_TYPE $BUILD_CONFIG"
 
-    caffeinate "$SCRIPT_DIR/2-build-ios-xcode.sh" "$STORE_TYPE" "$BUILD_CONFIG"
+    caffeinate "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/2-build-ios-xcode.sh" "$STORE_TYPE" "$BUILD_CONFIG"
     check_error "Build" $?
 }
 
@@ -80,7 +78,7 @@ run_archive()
     echo
     echo "----- MAC - 3-build-ios-ipa.sh Archive"
 
-    caffeinate "$SCRIPT_DIR/3-build-ios-ipa.sh" Archive
+    caffeinate "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/3-build-ios-ipa.sh" Archive
     check_error "Archive" $?
 }
 
@@ -89,7 +87,7 @@ run_ipa()
     echo
     echo "----- MAC - 3-build-ios-ipa.sh IPA"
 
-    caffeinate "$SCRIPT_DIR/3-build-ios-ipa.sh" IPA
+    caffeinate "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/3-build-ios-ipa.sh" IPA
     check_error "IPA" $?
 }
 
@@ -98,7 +96,7 @@ run_copy()
     echo
     echo "----- MAC - Copy IPA"
 
-    "$SCRIPT_DIR/3-build-ios-ipa.sh" Copy
+    "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/3-build-ios-ipa.sh" Copy
 
     check_error "Copy" 0
 }
@@ -108,7 +106,7 @@ run_info()
     echo
     echo "----- MAC - 4-git-show-info.sh"
 
-    "$SCRIPT_DIR/4-git-show-info.sh"
+    "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/4-git-show-info.sh"
     check_error "ShowInfo" $?
 }
 

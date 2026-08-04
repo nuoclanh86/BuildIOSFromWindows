@@ -2,12 +2,16 @@
 
 # All these paths are on the Mac
 
-PROJECT="/Users/admin/Documents/GitHub/kinder"
+PROJECT_DIR="/Users/admin/Documents/GitHub"
+
+PROJECT="${PROJECT_DIR}/kinder"
 BUILD_SCRIPT_FOLDER="/Users/admin/Documents/GitHub/BuildIOSFromWindows"
 UNITY="/Applications/Unity/Hub/Editor/6000.3.12f1/Unity.app/Contents/MacOS/Unity"
+
 # Windows shared folder mounted on the Mac
 WINDOW_SHARE="/Volumes/Shared_Write/IOS_auto_build"
 
+MAC_FOLDER_SHARED="${PROJECT_DIR}/FolderShared"
 
 
 
