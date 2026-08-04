@@ -76,23 +76,21 @@ elif [ "$BUILD_TYPE" == "Copy" ]; then
 
     if [ ! -d "$MAC_FOLDER_SHARED" ]; then
         echo "ERROR: Mac share folder not found: $MAC_FOLDER_SHARED"
-        exit 1
+    else
+		MAC_DEST_FOLDER="$MAC_FOLDER_SHARED/$TIMESTAMP"
+		mkdir -p "$MAC_DEST_FOLDER"
+
+		echo
+		echo "Copy IPA:"
+		echo "$IPA_FILE"
+		echo "To:"
+		echo "$MAC_DEST_FOLDER/$NEW_IPA_NAME"
+
+		cp "$IPA_FILE" "$MAC_DEST_FOLDER/$NEW_IPA_NAME"
+
+		echo
+		echo "========== Copy IPA to Mac Share DONE =========="
     fi
-
-    MAC_DEST_FOLDER="$MAC_FOLDER_SHARED/$TIMESTAMP"
-    mkdir -p "$MAC_DEST_FOLDER"
-
-    echo
-    echo "Copy IPA:"
-    echo "$IPA_FILE"
-    echo "To:"
-    echo "$MAC_DEST_FOLDER/$NEW_IPA_NAME"
-
-    cp "$IPA_FILE" "$MAC_DEST_FOLDER/$NEW_IPA_NAME"
-
-    echo
-    echo "========== Copy IPA to Mac Share DONE =========="
-
     #
     # Copy IPA to Windows Share
     #
@@ -101,23 +99,22 @@ elif [ "$BUILD_TYPE" == "Copy" ]; then
 
     if [ ! -d "$WINDOW_SHARE" ]; then
         echo "ERROR: Windows share not mounted: $WINDOW_SHARE"
-        exit 1
+    else
+		DEST_FOLDER="$WINDOW_SHARE/$TIMESTAMP"
+		mkdir -p "$DEST_FOLDER"
+
+		echo
+		echo "Copy IPA:"
+		echo "$IPA_FILE"
+		echo "To:"
+		echo "$DEST_FOLDER/$NEW_IPA_NAME"
+
+		cp "$IPA_FILE" "$DEST_FOLDER/$NEW_IPA_NAME"
+
+		echo
+		echo "========== Copy IPA to Windows Share DONE =========="
+
     fi
-
-    DEST_FOLDER="$WINDOW_SHARE/$TIMESTAMP"
-    mkdir -p "$DEST_FOLDER"
-
-    echo
-    echo "Copy IPA:"
-    echo "$IPA_FILE"
-    echo "To:"
-    echo "$DEST_FOLDER/$NEW_IPA_NAME"
-
-    cp "$IPA_FILE" "$DEST_FOLDER/$NEW_IPA_NAME"
-
-    echo
-    echo "========== Copy IPA to Windows Share DONE =========="
-
 else
     echo "ERROR: Invalid build type: $BUILD_TYPE"
     echo "Usage:"
