@@ -50,70 +50,70 @@ elif [ "$BUILD_TYPE" == "Copy" ]; then
 
     if [ -z "$IPA_FILE" ]; then
         echo "ERROR: IPA file not found"
-        exit 1
-    fi
-
-    TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
-
-    # Rename IPA when copying
-	if [ "$IPA_BUILT_TYPE" = "ReleaseBuild" ]; then
-		IPA_SUFFIX="_release"
-	elif [ "$IPA_BUILT_TYPE" = "cheat" ]; then
-		IPA_SUFFIX="_cheat"
 	else
-		IPA_SUFFIX="_unknown"
-	fi
+		echo "Copy: IPA file $IPA_BUILT_TYPE"
+		TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 
-    IPA_FILENAME=$(basename "$IPA_FILE")
-    IPA_NAME="${IPA_FILENAME%.ipa}"
-    NEW_IPA_NAME="${IPA_NAME}${IPA_SUFFIX}.ipa"
+		# Rename IPA when copying
+		if [ "$IPA_BUILT_TYPE" = "ReleaseBuild" ]; then
+			IPA_SUFFIX="_release"
+		elif [ "$IPA_BUILT_TYPE" = "cheat" ]; then
+			IPA_SUFFIX="_cheat"
+		else
+			IPA_SUFFIX="_unknown"
+		fi
 
-    #
-    # Copy IPA to Mac Share
-    #
-    echo
-    echo "========== Copy IPA to Mac Share =========="
+		IPA_FILENAME=$(basename "$IPA_FILE")
+		IPA_NAME="${IPA_FILENAME%.ipa}"
+		NEW_IPA_NAME="${IPA_NAME}${IPA_SUFFIX}.ipa"
 
-    if [ ! -d "$MAC_FOLDER_SHARED" ]; then
-        echo "ERROR: Mac share folder not found: $MAC_FOLDER_SHARED"
-    else
-		MAC_DEST_FOLDER="$MAC_FOLDER_SHARED/$TIMESTAMP"
-		mkdir -p "$MAC_DEST_FOLDER"
-
+		#
+		# Copy IPA to Mac Share
+		#
 		echo
-		echo "Copy IPA:"
-		echo "$IPA_FILE"
-		echo "To:"
-		echo "$MAC_DEST_FOLDER/$NEW_IPA_NAME"
+		echo "========== Copy IPA to Mac Share =========="
 
-		cp "$IPA_FILE" "$MAC_DEST_FOLDER/$NEW_IPA_NAME"
+		if [ ! -d "$MAC_FOLDER_SHARED" ]; then
+			echo "ERROR: Mac share folder not found: $MAC_FOLDER_SHARED"
+		else
+			MAC_DEST_FOLDER="$MAC_FOLDER_SHARED/$TIMESTAMP"
+			mkdir -p "$MAC_DEST_FOLDER"
 
+			echo
+			echo "Copy IPA:"
+			echo "$IPA_FILE"
+			echo "To:"
+			echo "$MAC_DEST_FOLDER/$NEW_IPA_NAME"
+
+			cp "$IPA_FILE" "$MAC_DEST_FOLDER/$NEW_IPA_NAME"
+
+			echo
+			echo "========== Copy IPA to Mac Share DONE =========="
+		fi
+		#
+		# Copy IPA to Windows Share
+		#
 		echo
-		echo "========== Copy IPA to Mac Share DONE =========="
-    fi
-    #
-    # Copy IPA to Windows Share
-    #
-    echo
-    echo "========== Copy IPA to Windows Share =========="
+		echo "========== Copy IPA to Windows Share =========="
 
-    if [ ! -d "$WINDOW_SHARE" ]; then
-        echo "ERROR: Windows share not mounted: $WINDOW_SHARE"
-    else
-		DEST_FOLDER="$WINDOW_SHARE/$TIMESTAMP"
-		mkdir -p "$DEST_FOLDER"
+		if [ ! -d "$WINDOW_SHARE" ]; then
+			echo "ERROR: Windows share not mounted: $WINDOW_SHARE"
+		else
+			DEST_FOLDER="$WINDOW_SHARE/$TIMESTAMP"
+			mkdir -p "$DEST_FOLDER"
 
-		echo
-		echo "Copy IPA:"
-		echo "$IPA_FILE"
-		echo "To:"
-		echo "$DEST_FOLDER/$NEW_IPA_NAME"
+			echo
+			echo "Copy IPA:"
+			echo "$IPA_FILE"
+			echo "To:"
+			echo "$DEST_FOLDER/$NEW_IPA_NAME"
 
-		cp "$IPA_FILE" "$DEST_FOLDER/$NEW_IPA_NAME"
+			cp "$IPA_FILE" "$DEST_FOLDER/$NEW_IPA_NAME"
 
-		echo
-		echo "========== Copy IPA to Windows Share DONE =========="
+			echo
+			echo "========== Copy IPA to Windows Share DONE =========="
 
+		fi
     fi
 else
     echo "ERROR: Invalid build type: $BUILD_TYPE"
