@@ -26,6 +26,11 @@ rm -rf "$PROJECT/_build"
 echo "Create build folder..."
 mkdir -p "$PROJECT/_build"
 
+echo "Create log build folder..."
+if [ ! -d "$BUILD_LOG_FOLDER" ]; then
+	mkdir -p "$BUILD_LOG_FOLDER"
+fi
+
 echo
 echo "========== git - clean =========="
 
