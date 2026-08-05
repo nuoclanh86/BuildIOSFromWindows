@@ -13,8 +13,8 @@ PROJECT="/Users/admin/Documents/GitHub/kinder"
 
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
-echo "PATH=$PATH"
-echo "git-lfs=$(which git-lfs)"
+# echo "PATH=$PATH"
+# echo "git-lfs=$(which git-lfs)"
 
 cd "$PROJECT"
 
