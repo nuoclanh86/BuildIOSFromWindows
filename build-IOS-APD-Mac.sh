@@ -36,12 +36,9 @@ check_error()
 	hours=$((elapsed / 3600))
 	minutes=$(((elapsed % 3600) / 60))
 
-	echo
-	echo
-	echo "========== Finished in ${hours} hr ${minutes} min =========="
-	echo
-	echo
-	echo
+	echo "============================================================"
+	echo "====== Finished in ${hours} hr ${minutes} min =============="
+	echo "============================================================"
 
     if [[ $CODE -ne 0 ]]; then
         echo
