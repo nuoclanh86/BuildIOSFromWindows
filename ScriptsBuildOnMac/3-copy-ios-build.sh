@@ -72,7 +72,7 @@ else
 		echo "$DEST_FOLDER/$NEW_IPA_NAME"
 
 		cp "$IPA_FILE" "$DEST_FOLDER/$NEW_IPA_NAME"		
-		cp "$BUILD_LOG" "$MAC_DEST_FOLDER/$BUILD_LOG_FILENAME"
+		cp "$BUILD_LOG" "$DEST_FOLDER/$BUILD_LOG_FILENAME"
 
 		echo
 		echo "========== Copy IPA to Windows Share DONE =========="
