@@ -7,6 +7,7 @@ set -e
 SECONDS=0
 if [ ! -d "$BUILD_LOG_FOLDER" ]; then
 	mkdir -p "$BUILD_LOG_FOLDER"
+fi
 
 #=====================================================
 # Special preset
