@@ -8,8 +8,8 @@ source "$SCRIPT_DIR/0-config.sh"
 echo
 echo "========== Run git on Mac =========="
 
-echo "PATH=$PATH"
-echo "git-lfs=$(which git-lfs)"
+# echo "PATH=$PATH"
+# echo "git-lfs=$(which git-lfs)"
 
 cd "$PROJECT"
 
