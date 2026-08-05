@@ -119,6 +119,7 @@ run_info()
 case "$MODE" in
     all)
         run_update
+		run_info writelog
         run_build
         run_archive
         run_ipa
