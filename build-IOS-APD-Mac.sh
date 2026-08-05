@@ -67,8 +67,7 @@ run_build()
     echo
     echo "----- MAC - 2-build-ios-xcode.sh $STORE_TYPE $BUILD_CONFIG"
 
-	"$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/4-git-show-info.sh" >> "$LOG_FILE" 2>&1
-    caffeinate "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/2-build-ios-xcode.sh" "$STORE_TYPE" "$BUILD_CONFIG" >> "$LOG_FILE" 2>&1
+    caffeinate "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/2-build-ios-xcode.sh" "$STORE_TYPE" "$BUILD_CONFIG" >> "$BUILD_LOG" 2>&1
     check_error "Build" $?
 }
 
@@ -77,7 +76,7 @@ run_archive()
     echo
     echo "----- MAC - 3-build-ios-ipa.sh Archive -----"
 
-    caffeinate "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/3-build-ios-ipa.sh" Archive >> "$LOG_FILE" 2>&1
+    caffeinate "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/3-build-ios-ipa.sh" Archive >> "$BUILD_LOG" 2>&1
     check_error "Archive" $?
 }
 
@@ -86,7 +85,7 @@ run_ipa()
     echo
     echo "----- MAC - 3-build-ios-ipa.sh IPA -----"
 
-    caffeinate "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/3-build-ios-ipa.sh" IPA >> "$LOG_FILE" 2>&1
+    caffeinate "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/3-build-ios-ipa.sh" IPA >> "$BUILD_LOG" 2>&1
     check_error "IPA" $?
 }
 
@@ -95,7 +94,7 @@ run_copy()
     echo
     echo "----- MAC - Copy IPA -----"
 
-    "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/3-build-ios-ipa.sh" Copy "$BUILT_IPA"
+    "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/3-copy-ios-build.sh" "$BUILT_IPA"
 
     check_error "Copy" 0
 }
@@ -105,7 +104,12 @@ run_info()
     echo
     echo "----- MAC - 4-git-show-info.sh -----"
 
-    "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/4-git-show-info.sh"
+    if [ "$1" = "writelog" ]; then
+        "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/4-git-show-info.sh" >> "$BUILD_LOG" 2>&1
+    else
+        "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/4-git-show-info.sh"
+    fi
+
     check_error "ShowInfo" $?
 }
 
@@ -129,6 +133,7 @@ case "$MODE" in
         ;;
 
     build)
+		run_info writelog
         run_build
         ;;
 

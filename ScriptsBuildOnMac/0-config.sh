@@ -31,4 +31,4 @@ EXPORT_OPTIONS="$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/ExportOptions.plist"
 SCHEME="Unity-iPhone"
 CONFIGURATION="Release"
 
-LOG_FILE="$MAC_FOLDER_SHARED/logs/build.log"
+BUILD_LOG="$MAC_FOLDER_SHARED/logs/build.log"
