@@ -5,6 +5,8 @@ source "$(pwd)/ScriptsBuildOnMac/0-config.sh"
 set -e
 
 SECONDS=0
+if [ ! -d "$BUILD_LOG_FOLDER" ]; then
+	mkdir -p "$BUILD_LOG_FOLDER"
 
 #=====================================================
 # Special preset
