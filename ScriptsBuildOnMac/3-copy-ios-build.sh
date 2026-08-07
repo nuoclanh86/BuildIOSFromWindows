@@ -6,7 +6,7 @@ source "$SCRIPT_DIR/0-config.sh"
 set -e
 
 IPA_BUILT_TYPE=$1
-
+echo "IPA_BUILT_TYPE: $IPA_BUILT_TYPE"
 
 IPA_FILE=$(find "$EXPORT_PATH" -name "*.ipa" | head -n 1)
 
@@ -17,7 +17,7 @@ else
 	TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 
 	# Rename IPA when copying
-	if [ "$IPA_BUILT_TYPE" = "ReleaseBuild" ]; then
+	if [ "$IPA_BUILT_TYPE" = "releaseBuild" ]; then
 		IPA_SUFFIX="_release"
 	elif [ "$IPA_BUILT_TYPE" = "cheat" ]; then
 		IPA_SUFFIX="_cheat"
