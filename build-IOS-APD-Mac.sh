@@ -154,16 +154,16 @@ case "$MODE" in
     *)
         echo "Unknown parameter: $MODE"
         echo
-        echo "Usage:"
-        echo "  ./build-IOS-APD-Mac.sh"
-        echo "  ./build-IOS-APD-Mac.sh update"
-        echo "  ./build-IOS-APD-Mac.sh build"
-        echo "  ./build-IOS-APD-Mac.sh archive"
-        echo "  ./build-IOS-APD-Mac.sh ipa"
-        echo "  ./build-IOS-APD-Mac.sh copy"
-        echo "  ./build-IOS-APD-Mac.sh info"
-        echo "  ./build-IOS-APD-Mac.sh release"		
-        echo "  ./build-IOS-APD-Mac.sh tung"
+		echo "Usage:"
+		echo "  ./build-IOS-APD-Mac.sh"
+		echo "  ./build-IOS-APD-Mac.sh release"
+		echo "  ./build-IOS-APD-Mac.sh tung"
+		echo "  ./build-IOS-APD-Mac.sh update"
+		echo "  ./build-IOS-APD-Mac.sh build"
+		echo "  ./build-IOS-APD-Mac.sh archive"
+		echo "  ./build-IOS-APD-Mac.sh ipa"
+		echo "  ./build-IOS-APD-Mac.sh copy"
+		echo "  ./build-IOS-APD-Mac.sh info"
         exit 1
         ;;
 esac
