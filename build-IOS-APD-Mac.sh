@@ -39,16 +39,16 @@ check_error()
 	hours=$((elapsed / 3600))
 	minutes=$(((elapsed % 3600) / 60))
 
-	echo "============================================================"
-	echo "====== Finished in ${hours} hr ${minutes} min =============="
-	echo "============================================================"
+	echo -e "${GREEN}============================================================${NC}"
+	echo -e "${GREEN}====== Finished in ${hours} hr ${minutes} min ==============${NC}"
+	echo -e "${GREEN}============================================================${NC}"
 
     if [[ $CODE -ne 0 ]]; then
         echo
-        echo "========================================"
-        echo "BUILD FAILED at step: $STEP"
-        echo "Exit Code: $CODE"
-        echo "========================================"
+        echo -e "${RED}========================================${NC}"
+        echo -e "${RED}BUILD FAILED at step: $STEP${NC}"
+        echo -e "${RED}Exit Code: $CODE${NC}"
+        echo -e "${RED}========================================${NC}"
         exit $CODE
     fi
 }

@@ -11,7 +11,7 @@ echo "IPA_BUILT_TYPE: $IPA_BUILT_TYPE"
 IPA_FILE=$(find "$EXPORT_PATH" -name "*.ipa" | head -n 1)
 
 if [ -z "$IPA_FILE" ]; then
-	echo "ERROR: IPA file not found"
+	echo -e "${RED}ERROR: IPA file not found${NC}"
 else
 	echo "Copy: IPA file $IPA_BUILT_TYPE"
 	TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
@@ -36,7 +36,7 @@ else
 	echo "========== Copy IPA to Mac Share =========="
 
 	if [ ! -d "$MAC_FOLDER_SHARED" ]; then
-		echo "ERROR: Mac share folder not found: $MAC_FOLDER_SHARED"
+		echo -e "${RED}ERROR: Mac share folder not found: $MAC_FOLDER_SHARED${NC}"
 	else
 		MAC_DEST_FOLDER="$MAC_FOLDER_SHARED/$TIMESTAMP"
 		mkdir -p "$MAC_DEST_FOLDER"
