@@ -40,7 +40,7 @@ check_error()
 	minutes=$(((elapsed % 3600) / 60))
 
 	echo -e "${GREEN}============================================================${NC}"
-	echo -e "${GREEN}====== Finished in ${hours} hr ${minutes} min ==============${NC}"
+	echo -e "${GREEN}==========${NC} Finished in ${hours} hr ${minutes} min ${GREEN}================${NC}"
 	echo -e "${GREEN}============================================================${NC}"
 
     if [[ $CODE -ne 0 ]]; then
