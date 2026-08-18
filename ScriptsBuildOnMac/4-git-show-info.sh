@@ -14,8 +14,8 @@ echo "========== Run git on Mac =========="
 cd "$PROJECT"
 
 echo
-echo "========== git - info current branch =========="
-echo "Branch   : $(git rev-parse --abbrev-ref HEAD)"
-echo "Revision : $(git rev-parse HEAD)"
-echo "Comment  : $(git log -1 --pretty=%B)"
+echo -e "${YELLOW}========== git - info current branch ==========${NC}"
+echo -e "${YELLOW}Branch   : $(git rev-parse --abbrev-ref HEAD)${NC}"
+echo -e "${YELLOW}Revision : $(git rev-parse HEAD)${NC}"
+echo -e "${YELLOW}Comment  : $(git log -1 --pretty=%B)${NC}"
 echo

@@ -60,7 +60,7 @@ else
 	echo "========== Copy IPA to Windows Share =========="
 
 	if [ ! -d "$WINDOW_SHARE" ]; then
-		echo "ERROR: Windows share not mounted: $WINDOW_SHARE"
+		echo -e "${RED}ERROR: Windows share not mounted: $WINDOW_SHARE${NC}"
 	else
 		DEST_FOLDER="$WINDOW_SHARE/$TIMESTAMP"
 		mkdir -p "$DEST_FOLDER"
