@@ -14,7 +14,7 @@ if [ -z "$IPA_FILE" ]; then
 	echo -e "${RED}ERROR: IPA file not found${NC}"
 else
 	echo "Copy: IPA file $IPA_BUILT_TYPE"
-	TIMESTAMP=$(date +"%Y-%m-%d__%H-%M-%S")
+	TIMESTAMP=$(date +"%Y-%m-%d_Time_%H-%M-%S")
 
 	# Rename IPA when copying
 	if [ "$IPA_BUILT_TYPE" = "releaseBuild" ]; then
