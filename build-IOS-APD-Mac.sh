@@ -107,7 +107,7 @@ run_info()
     if [ "$1" = "writelog" ]; then
         "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/4-git-show-info.sh" >> "$BUILD_LOG" 2>&1
     else
-        "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/4-git-show-info.sh"
+        "$BUILD_SCRIPT_FOLDER/ScriptsBuildOnMac/4-git-show-info.sh" hasColor
     fi
 
     check_error "ShowInfo" $?

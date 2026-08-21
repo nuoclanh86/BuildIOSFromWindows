@@ -2,6 +2,8 @@
 
 set -e
 
+USE_COLOR=$1
+
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_DIR/0-config.sh"
 
@@ -13,9 +15,17 @@ echo "========== Run git on Mac =========="
 
 cd "$PROJECT"
 
+if [ "$USE_COLOR" = "hasColor" ]; then
+    COLOR="$YELLOW"
+    RESET="$NC"
+else
+    COLOR=""
+    RESET=""
+fi
+
 echo
-echo -e "${YELLOW}========== git - info current branch ==========${NC}"
-echo -e "${YELLOW}Branch   : $(git rev-parse --abbrev-ref HEAD)${NC}"
-echo -e "${YELLOW}Revision : $(git rev-parse HEAD)${NC}"
-echo -e "${YELLOW}Comment  : $(git log -1 --pretty=%B)${NC}"
+echo -e "${COLOR}========== git - info current branch ==========${RESET}"
+echo -e "${COLOR}Branch   : $(git rev-parse --abbrev-ref HEAD)${RESET}"
+echo -e "${COLOR}Revision : $(git rev-parse HEAD)${RESET}"
+echo -e "${COLOR}Comment  : $(git log -1 --pretty=%s)${RESET}"
 echo
