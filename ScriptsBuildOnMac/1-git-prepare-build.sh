@@ -63,7 +63,4 @@ git pull
 
 echo
 echo "========== git - done =========="
-echo "Branch   : $(git rev-parse --abbrev-ref HEAD)"
-echo "Revision : $(git rev-parse HEAD)"
-echo "Comment  : $(git log -1 --pretty=%B)"
 echo
