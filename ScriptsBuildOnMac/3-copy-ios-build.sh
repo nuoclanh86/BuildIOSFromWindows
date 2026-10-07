@@ -38,7 +38,7 @@ else
 	if [ ! -d "$MAC_FOLDER_SHARED" ]; then
 		echo -e "${RED}ERROR: Mac share folder not found: $MAC_FOLDER_SHARED${NC}"
 	else
-		MAC_DEST_FOLDER="$MAC_FOLDER_SHARED/$TIMESTAMP"
+		MAC_DEST_FOLDER="$MAC_FOLDER_SHARED/$TIMESTAMP${IPA_SUFFIX}"
 		mkdir -p "$MAC_DEST_FOLDER"
 
 		echo
