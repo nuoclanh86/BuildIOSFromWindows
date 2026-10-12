@@ -10,10 +10,19 @@ set -e
 SECONDS=0
 
 echo -e "${GREEN}============== Build CMD ===================================${NC}"
-echo -e "${GREEN}== ./build-IOS-APD-Mac.sh 						--> 	build cheat 	, feature/toy-agent/prototype-v7/develop ${NC}"
-echo -e "${GREEN}== ./build-IOS-APD-Mac.sh release 				--> 	build release 	, feature/toy-agent/prototype-v7/develop ${NC}"
-echo -e "${GREEN}== ./build-IOS-APD-Mac.sh tung 				--> 	build cheat 	, feature/tung/prototype-v7 ${NC}"
-echo -e "${GREEN}== ./build-IOS-APD-Mac.sh tung 'branch_name' 	-->		build cheat 	, 'branch_name' ${NC}"
+
+printf "${GREEN}== %-48s --> %s${NC}\n" \
+    "./build-IOS-APD-Mac.sh" "build cheat, feature/toy-agent/prototype-v7/develop"
+
+printf "${GREEN}== %-48s --> %s${NC}\n" \
+    "./build-IOS-APD-Mac.sh release" "build release, feature/toy-agent/prototype-v7/develop"
+
+printf "${GREEN}== %-48s --> %s${NC}\n" \
+    "./build-IOS-APD-Mac.sh tung" "build cheat, feature/tung/prototype-v7"
+
+printf "${GREEN}== %-48s --> %s${NC}\n" \
+    "./build-IOS-APD-Mac.sh tung 'branch_name'" "build cheat, 'branch_name'"
+
 echo -e "${GREEN}============================================================${NC}"
 
 #=====================================================
