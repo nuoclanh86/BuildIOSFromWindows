@@ -22,6 +22,9 @@ printf "${GREEN}== %-48s --> %s${NC}\n" \
 
 printf "${GREEN}== %-48s --> %s${NC}\n" \
     "./build-IOS-APD-Mac.sh tung 'branch_name'" "build cheat, 'branch_name'"
+	
+printf "${GREEN}== %-48s --> %s${NC}\n" \
+    "./build-IOS-APD-Mac.sh release 'branch_name'" "build cheat, 'branch_name'"
 
 echo -e "${GREEN}============================================================${NC}"
 
@@ -29,7 +32,7 @@ echo -e "${GREEN}============================================================${N
 # Special preset
 #=====================================================
 BUILT_IPA="non"
-if [[ "$1" == "tung" ]]; then
+if [[ "$1" == "tung" || "$1" == "release" ]]; then
     if [[ -n "$2" ]]; then
         BRANCH="$2"
     else
