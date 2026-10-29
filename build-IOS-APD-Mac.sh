@@ -11,19 +11,10 @@ SECONDS=0
 
 echo -e "${GREEN}============== Build CMD ===================================${NC}"
 
-printf "${GREEN}== %-48s --> %s${NC}\n" \
-    "./build-IOS-APD-Mac.sh" "build cheat, feature/toy-agent/prototype-v7/develop"
-
-printf "${GREEN}== %-48s --> %s${NC}\n" \
-    "./build-IOS-APD-Mac.sh release" "build release, feature/toy-agent/prototype-v7/develop"
-
-printf "${GREEN}== %-48s --> %s${NC}\n" \
-    "./build-IOS-APD-Mac.sh tung" "build cheat, feature/tung/prototype-v7"
-
-printf "${GREEN}== %-48s --> %s${NC}\n" \
-    "./build-IOS-APD-Mac.sh tung 'branch_name'" "build cheat, 'branch_name'"
+printf "${GREEN}== %-48s ---> %s${NC}\n" \
+    "./build-IOS-APD-Mac.sh cheat 'branch_name'" "build cheat, 'branch_name'"
 	
-printf "${GREEN}== %-48s --> %s${NC}\n" \
+printf "${GREEN}== %-48s ---> %s${NC}\n" \
     "./build-IOS-APD-Mac.sh release 'branch_name'" "build release, 'branch_name'"
 
 echo -e "${GREEN}============================================================${NC}"
@@ -32,27 +23,19 @@ echo -e "${GREEN}============================================================${N
 # Special preset
 #=====================================================
 BUILT_IPA="non"
-if [[ "$1" == "tung" || "$1" == "release" ]]; then
-    if [[ -n "$2" ]]; then
-        BRANCH="$2"
+if [[ "$1" == "cheat" || "$1" == "release" ]]; then
+    BRANCH="$2"
+    MODE="all"
+
+    if [[ "$1" == "release" ]]; then
+        BUILD_CONFIG="releaseBuild"
+        BUILT_IPA="releaseBuild"
     else
-        BRANCH="feature/tung/prototype-v7"
+        BUILT_IPA="cheat"
     fi
-
-    BUILT_IPA="cheat"
-    MODE="all"
-
-elif [[ "$1" == "release" ]]; then
-    BUILD_CONFIG="releaseBuild"
-    BUILT_IPA="releaseBuild"
-    MODE="all"
-
-elif [[ -z "$1" ]]; then
-    BUILT_IPA="cheat"
-    MODE="all"
-
 else
-    MODE="$1"
+    echo "Usage: $0 <cheat|release> <branch_name>"
+    exit 1
 fi
 
 check_error()
