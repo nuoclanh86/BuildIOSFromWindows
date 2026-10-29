@@ -24,7 +24,7 @@ printf "${GREEN}== %-48s --> %s${NC}\n" \
     "./build-IOS-APD-Mac.sh tung 'branch_name'" "build cheat, 'branch_name'"
 	
 printf "${GREEN}== %-48s --> %s${NC}\n" \
-    "./build-IOS-APD-Mac.sh release 'branch_name'" "build cheat, 'branch_name'"
+    "./build-IOS-APD-Mac.sh release 'branch_name'" "build release, 'branch_name'"
 
 echo -e "${GREEN}============================================================${NC}"
 
